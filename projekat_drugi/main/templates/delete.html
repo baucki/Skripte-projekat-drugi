@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>online-Shop</title>
+
+    </head>
+
+    <body>
+        {% include 'header.html' %}
+
+        {% for product in products %}
+            <div>
+
+                <p>{{product.name}}</p>
+                <p>{{product.price}}</p>
+                <p>{{product.quantity}}</p>
+                <form method="POST" action="{% url 'main:delete' product.id %}">
+                    {% csrf_token %}
+                    <button type="submit">delete</button>
+                </form>
+            </div>
+        {% endfor %}
+
+    </body>
+
+    <style>
+
+        div {
+            display: flex; 
+            flex-direction: row; 
+            width: 80%; 
+            margin-left: 10%;
+        }
+
+        div p {
+            margin: auto;
+            width: 33%
+        }
+
+        form {
+            display: flex; 
+            flex-direction: row; 
+          
+        }
+
+
+
+    </style>
+</html>

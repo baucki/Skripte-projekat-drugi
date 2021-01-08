@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>online-Shop</title>
+
+    </head>
+
+    <body>
+        {% include 'header.html' %}
+        <form action="{% url 'main:add' %}" method="POST">
+            {% csrf_token %}
+
+            <label for="name">name:</label>
+            {{ form.name }}
+            {{ form.name.errors }}
+
+            <label for="price">price:</label>
+            {{ form.price }}
+            {{ form.price.errors }}
+
+            <label for="quantity">quantity:</label>
+            {{ form.quantity }}
+            {{ form.quantity.errors }}
+
+            <button type="submit">Add Product</button>
+        </form>
+
+
+    </body>
+
+
+</html>

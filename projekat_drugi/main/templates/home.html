@@ -1,0 +1,54 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>online-Shop</title>
+      
+    </head>
+
+    <body>
+        {% include 'header.html' %}
+
+        {% for product in products %}
+            <div>
+                <p>{{product.name}}</p>
+                <p>{{product.price}}</p>
+                <form method="POST" action="{% url 'main:add_to_cart' product.id %}">
+                    {% csrf_token %}
+                    <input type="number" placeholder="quantity" value="1" name="quantity">
+                    <!-- <p>{{product.quantity}}</p> -->
+                    <button type="submit">Add to cart</button>
+                </form>
+            </div>
+        {% endfor %}
+    </body>
+
+    <style>
+
+        div {
+            display: flex; 
+            flex-direction: row; 
+            width: 80%; 
+            margin-left: 10%;
+        }
+
+        div p {
+            margin: auto;
+            width: 33%
+        }
+
+        form {
+            display: flex; 
+            flex-direction: row; 
+          
+        }
+
+
+
+    </style>
+</html>

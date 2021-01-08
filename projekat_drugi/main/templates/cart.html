@@ -1,0 +1,62 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>{{user.username}}'s cart</title>
+
+    </head>
+
+    <body>
+        {% include 'header.html' %}
+
+        {% for item in items %}
+            <div>
+
+                <p>{{item.product.name}}</p>
+                <p>{{item.product.price}}</p>
+                <p>{{item.quantity}}</p>
+                <form method="POST" action="{% url 'main:remove_from_cart' item.id %}">
+                    {% csrf_token %}
+                    <button type="submit">remove from cart</button>
+                </form>
+            </div>
+        {% endfor %}
+        
+        {% if items.count > 0 %}
+        <form method="POST" action="{% url 'main:buy' %}">
+            {% csrf_token %}
+            <button type="submit">Buy</button>
+        </form>
+        {% endif %}
+
+    </body>
+
+    <style>
+
+        div {
+            display: flex; 
+            flex-direction: row; 
+            width: 80%; 
+            margin-left: 10%;
+        }
+
+        div p {
+            margin: auto;
+            width: 33%
+        }
+
+        form {
+            display: flex; 
+            flex-direction: row; 
+          
+        }
+
+
+
+    </style>
+</html>
